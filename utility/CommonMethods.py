@@ -1,6 +1,7 @@
 import time
 from sys import flags
 
+from selenium.common import ElementClickInterceptedException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.expected_conditions import element_to_be_clickable
@@ -19,12 +20,26 @@ class CommonMethods():
     def elementToBeClickable(self, locator):
         return self.wait.until(EC.element_to_be_clickable(locator))
 
+
     def elementClick(self, locator):
         element = self.elementToBeClickable(locator)
         try:
             element.click()
-        except:
+        except ElementClickInterceptedException:
             self.driver.execute_script("arguments[0].click();", element)
+        except Exception:
+            print(Exception)
+    # def elementClick(self, locator):
+    #     try:
+    #         element = self.locatePresenceOfElement(locator)
+    #         try:
+    #             element = self.elementToBeClickable(locator)
+    #             element.click()
+    #         except ElementClickInterceptedException:
+    #             self.driver.execute_script("arguments[0].click();", element)
+    #     except TimeoutException:
+    #         element = self.wait.until(EC.presence_of_element_located(locator))
+    #         self.driver.execute_script("arguments[0].click();", element)
 
     def clearAndEnter(self, locator, data):
         element = self.locatePresenceOfElement(locator)
@@ -41,11 +56,10 @@ class CommonMethods():
     def verify_text(self, locator, exp):
         time.sleep(2)
         act = self.locatePresenceOfElement(locator).text.strip()
-        #act_list = [a for a in act.split(" ")]
-        #exp_list = [e for e in exp.split(" ")]
-        #for a, e in zip(act_list, exp_list):
-         #   print(a, "==", e)
-
+        # act_list = [a for a in act.split(" ")]
+        # exp_list = [e for e in exp.split(" ")]
+        # for a, e in zip(act_list, exp_list):
+        #     print(a, e)
         assert exp in act, f"Actual {act}"
 
 
