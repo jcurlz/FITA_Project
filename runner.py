@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     behave_args = [
         features_path,
-        '-t', 'element',
+        '-t', 'scenario',
         '--format', 'behave_html_formatter:HTMLFormatter',
         '--out', 'reports/behave_report.html',
         '--no-skipped',

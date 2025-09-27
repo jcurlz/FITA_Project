@@ -11,10 +11,11 @@ from utility.CommonMethods import CommonMethods
 SCREENSHOT_DIR = os.path.join(os.getcwd(), "reports", "screenshots")
 os.makedirs(SCREENSHOT_DIR, exist_ok=True)
 
-def before_all(context):
+#def before_all(context):
+def before_scenario(context, scenario):
     options = Options()
     options.add_argument('--incognito')
-    #options.add_argument('--headless')
+    options.add_argument('--headless')
     #options.add_argument('--window-size=1920,1080')
     options.add_argument('start-maximized')
     context.driver = Chrome(options=options)
@@ -38,6 +39,7 @@ def after_step(context, step):
         if "behave_html_formatter" in context.config.reporters:
             context.config.reporters["behave_html_formatter"].embed(file_path, "image/png", "Screenshot")
 
-def after_all(context):
+#def after_all(context):
+def after_scenario(context, scenario):
     context.driver.quit()
 

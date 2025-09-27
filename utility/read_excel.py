@@ -28,7 +28,6 @@ class Excel():
             header[cell_val] = idx_key
 
 
-
         for row_cell in sheet.iter_rows(min_row=2, values_only=True):
             test_case = row_cell[header['TestCase']]
             test_description = row_cell[header['TestDescription']]

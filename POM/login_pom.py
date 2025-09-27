@@ -14,10 +14,6 @@ class LoginPOM:
         self.wait = WebDriverWait(self.driver, 20)
 
 
-    #CONSTANTS#
-    LoremIpsum_TEXT = 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
-
-
     def specification_tab(self, specification_tab):
         tab_locator = (By.XPATH, f'//*[@class="accordion-header"]//*[contains(normalize-space(text()), "{specification_tab}")]')
         tab_status = self.wait.until(EC.presence_of_element_located(tab_locator)).get_attribute("aria-expanded")

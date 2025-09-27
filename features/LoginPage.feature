@@ -13,6 +13,7 @@ Scenario:Test Login Page for Automation Testing Practice
       When User expands the Elements tab
       Then User clicks on TextBox and executes cases in TC_02
 
+
   @widget
 Scenario:Test Login Page for Automation Testing Practice
       When User expands the Widget tab
