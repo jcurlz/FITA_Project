@@ -29,17 +29,6 @@ class CommonMethods():
             self.driver.execute_script("arguments[0].click();", element)
         except Exception:
             print(Exception)
-    # def elementClick(self, locator):
-    #     try:
-    #         element = self.locatePresenceOfElement(locator)
-    #         try:
-    #             element = self.elementToBeClickable(locator)
-    #             element.click()
-    #         except ElementClickInterceptedException:
-    #             self.driver.execute_script("arguments[0].click();", element)
-    #     except TimeoutException:
-    #         element = self.wait.until(EC.presence_of_element_located(locator))
-    #         self.driver.execute_script("arguments[0].click();", element)
 
     def clearAndEnter(self, locator, data):
         element = self.locatePresenceOfElement(locator)
