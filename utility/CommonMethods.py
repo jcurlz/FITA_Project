@@ -17,12 +17,8 @@ class CommonMethods():
     def locatePresenceOfElement(self, locator):
         return self.wait.until(EC.presence_of_element_located(locator))
 
-    def elementToBeClickable(self, locator):
-        return self.wait.until(EC.element_to_be_clickable(locator))
-
-
     def elementClick(self, locator):
-        element = self.elementToBeClickable(locator)
+        element = self.wait.until(EC.element_to_be_clickable(locator))
         try:
             element.click()
         except ElementClickInterceptedException:
