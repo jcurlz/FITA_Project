@@ -1,39 +1,62 @@
 pipeline {
     agent any
 
-    triggers {
-        GenericTrigger(
-            genericVariables: [
-                [key: 'ref', value: '$.ref']
-            ],
-            token: 'Kazakh',
-            printContributedVariables: true,
-            printPostContent: true
-        )
+    environment {
+        PYTHON = "python"
+        REPORT_PATH = "behave_report.html"
     }
 
     stages {
-        stage('Checkout') {
+        stage('Setup') {
             steps {
-                checkout scm
+                echo 'Upgrading pip and installing dependencies...'
+                bat "${env.PYTHON} -m pip install --upgrade pip"
+                bat "${env.PYTHON} -m pip install -r requirements.txt"
             }
         }
 
         stage('Build') {
             steps {
-                echo "Building project triggered by GitHub push..."
-                python -m pip install --upgrade pip
-                python -m pip install -r requirements.txt
-                set REPORT_PATH=behave_report.html
-                python -m behave features/ -t '%TAGS%' --format behave_html_formatter:HTMLFormatter --out behave_report.html --no-skipped --no-capture -f plain
+                echo 'Building project (if needed)...'
+                bat 'echo Build completed.'
             }
         }
 
         stage('Test') {
             steps {
-                echo "Running tests..."
-                // Add your test commands here
+                echo 'Running Behave tests with HTML report...'
+                // Replace '%TAGS%' with your desired tag expression if needed
+                bat """
+                    set REPORT_PATH=${env.REPORT_PATH}
+                    ${env.PYTHON} -m behave features/ -t "%TAGS%" --format behave_html_formatter:HTMLFormatter --out %REPORT_PATH% --no-skipped --no-capture -f plain
+                """
             }
+        }
+
+        stage('Archive Results') {
+            steps {
+                echo 'Archiving Behave HTML report...'
+                archiveArtifacts artifacts: "${env.REPORT_PATH}", allowEmptyArchive: true
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying project (placeholder)...'
+                bat 'echo Deploy step completed.'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished.'
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
