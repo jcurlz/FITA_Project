@@ -1,38 +1,32 @@
 pipeline {
     agent any
 
-    triggers {
-        GenericTrigger(
-            genericVariables: [
-                [key: 'ref', value: '$.ref']
-            ],
-            token: 'Kazakh',
-            printContributedVariables: true,
-            printPostContent: true
-        )
-    }
-
     stages {
-        stage('Checkout') {
+        stage('Setup') {
             steps {
-                checkout scm
+                echo 'Upgrading pip'
+                bat 'python -m pip install --upgrade pip'
             }
         }
 
         stage('Build') {
             steps {
-                echo "Building project triggered by GitHub push..."
-                python -m pip install --upgrade pip
-                python -m pip install -r requirements.txt
-                set REPORT_PATH=behave_report.html
-                python -m behave features/ -t '%TAGS%' --format behave_html_formatter:HTMLFormatter --out behave_report.html --no-skipped --no-capture -f plain
+                echo 'Build step here'
+                bat 'echo Building project...'
             }
         }
 
         stage('Test') {
             steps {
-                echo "Running tests..."
-                // Add your test commands here
+                echo 'Run tests here'
+                bat 'echo Testing project...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploy step here'
+                bat 'echo Deploying project...'
             }
         }
     }
