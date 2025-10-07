@@ -41,6 +41,5 @@ def after_step(context, step):
 
 #def after_all(context):
 def after_scenario(context, scenario):
-
     context.driver.quit()
 
