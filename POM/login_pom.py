@@ -13,6 +13,10 @@ class LoginPOM:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 20)
 
+    # Objects    
+    def component_path(self, component):
+        return By.XPATH, f"//a[normalize-space(text())='{component}']"
+
 
     def specification_tab(self, specification_tab):
         tab_locator = (By.XPATH, f'//*[@class="accordion-header"]//*[contains(normalize-space(text()), "{specification_tab}")]')
@@ -21,7 +25,7 @@ class LoginPOM:
 
     def expand_or_collapse_it(self, tab_status= "false", locator=None, element_to_ExpandOrCollapse= None):
         if  tab_status == "false":
-            self.wait.until(EC.presence_of_element_located(locator)).click()
+            self.wait.until(EC.element_to_be_clickable(locator)).click()
             print(f"{element_to_ExpandOrCollapse} expanded")
         else:
             print(f"{element_to_ExpandOrCollapse} collapsed")
