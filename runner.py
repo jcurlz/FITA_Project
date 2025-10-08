@@ -5,7 +5,7 @@ from behave.__main__ import main as behave_main
 if __name__ == "__main__":
     features_path = os.path.join(os.getcwd(), "features")
     print(features_path)
-    tags = os.getenv(TAGS, 'smoke'),
+    tags = os.getenv("TAGS", "smoke")
     print(f"{tags} executed")
     behave_args = [
         features_path,
