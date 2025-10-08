@@ -1,4 +1,4 @@
-@smoke
+@smoke @scenario
 Feature: Smoke test and sign off
   @smoke1
   Scenario: To conduct a quick smoke run

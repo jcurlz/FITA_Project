@@ -5,16 +5,16 @@ from behave.__main__ import main as behave_main
 if __name__ == "__main__":
     features_path = os.path.join(os.getcwd(), "features")
     print(features_path)
-    tags = os.getenv("TAGS", "smoke")
+    tags = os.getenv("TAGS", "@widget")
     print(f"{tags} executed")
     behave_args = [
         features_path,
         '-t', tags
-        #   '--format', 'behave_html_formatter:HTMLFormatter',
-        #   '--out', 'reports/behave_report.html',
-        #   '--no-skipped',
-        #  '--no-capture',
-        #  '-f', 'plain'
+         , '--format', 'behave_html_formatter:HTMLFormatter'
+         , '--out', 'reports/behave_report.html'
+         , '--no-skipped'
+         , '--no-capture'
+         , '-f', 'plain'
      ]
 
     # Execute Behave
