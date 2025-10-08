@@ -8,13 +8,13 @@ if __name__ == "__main__":
 
     behave_args = [
         features_path,
-        #  '-t', 'element',
-        #  '--format', 'behave_html_formatter:HTMLFormatter',
-        #  '--out', 'reports/behave_report.html',
-        #  '--no-skipped',
-        # '--no-capture',
-        # '-f', 'plain'
-    ]
+    #      '-t', 'scenario',
+    #      '--format', 'behave_html_formatter:HTMLFormatter',
+    #      '--out', 'reports/behave_report.html',
+    #      '--no-skipped',
+    #     '--no-capture',
+    #     '-f', 'plain'
+     ]
 
     # Execute Behave
     exit_code = behave_main(behave_args)

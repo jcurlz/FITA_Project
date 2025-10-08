@@ -15,9 +15,21 @@ os.makedirs(SCREENSHOT_DIR, exist_ok=True)
 def before_scenario(context, scenario):
     options = Options()
     options.add_argument('--incognito')
-    options.add_argument('--headless')
-    options.add_argument('--window-size=1920,1080')
-    options.add_argument('start-maximized')
+    mode = os.getenv("ModeOfExecution", "Headless(CLI)")
+    match mode:
+        case 'Headless(CLI)':
+            options.add_argument('--headless')
+            options.add_argument('--window-size=1920,1080')
+            print("Headless Terminal mode.......")
+        case 'Headed(UI)':
+            #options.add_argument('--headless')
+            options.add_argument('--start-maximized')
+            print("Headed UI mode.......")
+        case _:
+            options.add_argument('--headless')
+            options.add_argument('--window-size=1920,1080')
+            print("Headless mode.......")
+
     context.driver = Chrome(options=options)
     context.driver.get(gv.BASE_URL)
 
