@@ -17,8 +17,8 @@ class Excel():
          self.wait = WebDriverWait(self.driver, 20)
          self.comm = CommonMethods(self.driver)
 
-    def read_my_excel(self, worksheet):
-        filepath = os.path.join(os.getcwd(), "utility", "TestCases.xlsx")
+    def read_my_excel(self, worksheet, filename):
+        filepath = os.path.join(os.getcwd(), "utility", filename)
         print("PATH", filepath)
         workbook = load_workbook(filepath)
         sheet = workbook[worksheet]
