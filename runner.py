@@ -8,12 +8,12 @@ if __name__ == "__main__":
 
     behave_args = [
         features_path,
-          '-t', 'smoke',
-          '--format', 'behave_html_formatter:HTMLFormatter',
-          '--out', 'reports/behave_report.html',
-          '--no-skipped',
-         '--no-capture',
-         '-f', 'plain'
+        #   '-t', 'smoke',
+        #   '--format', 'behave_html_formatter:HTMLFormatter',
+        #   '--out', 'reports/behave_report.html',
+        #   '--no-skipped',
+        #  '--no-capture',
+        #  '-f', 'plain'
      ]
 
     # Execute Behave
