@@ -15,7 +15,7 @@ os.makedirs(SCREENSHOT_DIR, exist_ok=True)
 def before_scenario(context, scenario):
     options = Options()
     options.add_argument('--incognito')
-    mode = os.getenv("ModeOfExecution", "Headless(CLI)")
+    mode = os.getenv("ModeOfExecution", gv.ModeOfExecution)
     match mode:
         case 'Headless(CLI)':
             options.add_argument('--headless')

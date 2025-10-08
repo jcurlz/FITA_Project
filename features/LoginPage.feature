@@ -1,6 +1,6 @@
 @scenario @tab
 Feature:Inside Demo website
-  Background:
+    Background:
     Given User inside Automation Practise website
 
     @form
