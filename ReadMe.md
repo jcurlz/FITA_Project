@@ -1,7 +1,6 @@
 # Automation Practise Website #
 https://practice.expandtesting.com/
 
-
 ## Behave Project Structure ##
 ProjRootFolder
 |_features
